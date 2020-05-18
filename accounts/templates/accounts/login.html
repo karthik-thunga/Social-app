@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    {% if form.errors %}
+    {% else %}
+        <h4>Please enter your credentials </h4>
+    {% endif %}
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="next" value="{{ next }}">
+        <input type="submit" value="Login">
+        <a href="{% url 'password_reset' %}">Forgot Password?</a>
+    </form>
+{% endblock %}
